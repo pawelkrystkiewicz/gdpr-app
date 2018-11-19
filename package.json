@@ -1,0 +1,38 @@
+{
+  "name": "gdpr-app",
+  "version": "0.1.0",
+  "description": "GDPR managment app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawelkrystkiewicz/gdpr-app.git"
+  },
+  "keywords": [
+    "gdpr",
+    "react",
+    "next",
+    "graphql",
+    "prisma",
+    "spa"
+  ],
+  "author": "Paweł Krystkiewicz",
+  "license": "Private",
+  "bugs": {
+    "url": "https://github.com/pawelkrystkiewicz/gdpr-app/issues"
+  },
+  "homepage": "https://github.com/pawelkrystkiewicz/gdpr-app#readme",
+  "dependencies": {
+    "antd": "^3.10.8",
+    "apollo-boost": "^0.1.21",
+    "apollo-client": "^2.4.6",
+    "dotenv-webpack": "^1.5.7",
+    "graphql": "^14.0.2",
+    "next": "^7.0.2",
+    "prisma": "^1.20.7",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}

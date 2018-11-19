@@ -1,0 +1,59 @@
+#FK from  FK do danej tabeli z innej
+#FK in  FK z danej tabeli do innej
+
+enum UserType {
+  ADMIN
+  USER
+  TEMPUSER
+  NEW #nowe konto
+}
+
+type User {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  avatar: String
+  #FK from:
+  role: UserType! @default(value: NEW)
+  #FK in:
+  contractor: [Contractor!]!
+  createdBy: [DataShareConsent!]! @relation(name: "CreatedByUser")
+  updatedBy: [DataShareConsent!]! @relation(name: "UpdatedByUser")
+}
+
+type Contractor {
+  id: ID! @unique
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+  #FK from:
+  #NONE
+  #FK in:
+  user: [User!]!
+}
+
+type DataShareConsent {
+  #Data udostępnienia danych
+  consentDate: DateTime!
+  #Dane podmiotu, któremu udostępniono dane
+  consentGivenTo: String! #Contractor?
+  #Nazwa zbioru, z którego udostępniono dane
+  collectionName: String!
+  #Podstawa prawna
+  legalBasis: String!
+  #Zakres udostępnionych danych
+  rangeOfConsentedData: String!
+  #Nazwisko i imię pracownika dokonującego udostępnienia danych
+  consentGivenBy: String!
+
+  #Tech fields
+  createdBy: User! @relation(name: "CreatedByUser")
+  updatedBy: User! @relation(name: "UpdatedByUser")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID! @unique
+}

@@ -1,0 +1,10 @@
+endpoint: http://localhost:4477/gdpr/data
+datamodel: datamodel.prisma
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+      - graphql get-schema --project database
+seed:
+  import: seed.graphql
