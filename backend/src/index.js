@@ -3,20 +3,23 @@ const { Prisma } = require("prisma-binding");
 const { GraphQLServer } = require("graphql-yoga");
 const resolvers = require("./resolvers");
 
+const PORT = process.env.CLIENT_PORT;
+
 const db = new Prisma({
-    typeDefs: "../database/generated/prisma.graphql",
-    endpoint: process.env.DATA_ENDPOINT,
-    secret: process.env.SECRET
+  typeDefs: "../database/generated/prisma.graphql",
+  endpoint: process.env.DATABASE_ENPOINT,
+//   secret: process.env.SECRET
 });
 
 const server = new GraphQLServer({
-    typeDefs: "./schema-data.graphql",
+    typeDefs: "./schema.graphql",
     resolvers,
     context: req => ({ ...req, db })
 });
 
-SERVER_PORT=process.env.PORT
 
-server.start(({SERVER_PORT}) =>
-    console.log(`Server is running on ${SERVER_PORT}`)
+console.log(PORT)
+
+server.start(({PORT}) =>
+    console.log(`Server is running on ${PORT}`)
 );

@@ -4,7 +4,9 @@
   "description": "GDPR managment app",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "front": "cd frontend && next",
+    "back": "cd backend/src && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,7 @@
     "next",
     "graphql",
     "prisma",
-    "spa"
+    "ssr"
   ],
   "author": "Paweł Krystkiewicz",
   "license": "Private",
@@ -25,14 +27,25 @@
   },
   "homepage": "https://github.com/pawelkrystkiewicz/gdpr-app#readme",
   "dependencies": {
-    "antd": "^3.10.8",
+    "@material-ui/core": "^3.5.1",
+    "@material-ui/icons": "^3.0.1",
     "apollo-boost": "^0.1.21",
     "apollo-client": "^2.4.6",
+    "date-fns": "^1.29.0",
+    "dotenv": "^6.1.0",
     "dotenv-webpack": "^1.5.7",
+    "format": "^0.2.2",
     "graphql": "^14.0.2",
+    "graphql-yoga": "^1.16.7",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "material-ui-table-edit": "^3.0.3",
+    "mui-editable-table": "^0.3.3",
     "next": "^7.0.2",
+    "nodemon": "^1.18.6",
     "prisma": "^1.20.7",
+    "prisma-binding": "^2.2.8",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-tap-event-plugin": "^2.0.1"
   }
 }

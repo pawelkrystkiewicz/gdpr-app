@@ -1,5 +1,4 @@
-import React from 'react';
+import React from "react";
+import AppLayout from "../components/AppLayout";
 
-export default index = () =>(
-    <div>Hello World</div>
-);
+export default () => <AppLayout />;

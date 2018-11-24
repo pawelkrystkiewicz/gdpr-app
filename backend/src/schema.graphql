@@ -1,0 +1,65 @@
+type Query {
+  users: [User!]!
+  user: User!
+  dataShareConsents: [DataShareConsent!]!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+enum UserType {
+  ADMIN
+  USER
+  TEMPUSER
+  NEW #nowe konto
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType!
+  contractor: [Contractor!]!
+  createdBy: [DataShareConsent!]!
+  updatedBy: [DataShareConsent!]!
+}
+
+type Contractor {
+  id: ID!
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+  user: [User!]!
+}
+type DataShareConsent {
+  #Data udostępnienia danych
+  consentDate: String!
+  #Dane podmiotu, któremu udostępniono dane
+  consentGivenTo: String! #Contractor?
+  #Nazwa zbioru, z którego udostępniono dane
+  collectionName: String!
+  #Podstawa prawna
+  legalBasis: String!
+  #Zakres udostępnionych danych
+  rangeOfConsentedData: String!
+  #Nazwisko i imię pracownika dokonującego udostępnienia danych
+  consentGivenBy: String!
+  #Tech fields
+  createdBy: User!
+  updatedBy: User!
+  createdAt: String!
+  updatedAt: String!
+  id: ID!
+}

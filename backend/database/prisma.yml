@@ -5,6 +5,10 @@ generate:
     output: ./generated/prisma-client/
 hooks:
   post-deploy:
+      
+      - echo "Deployment finished"
       - graphql get-schema --project database
+      - graphql prepare
+
 seed:
   import: seed.graphql

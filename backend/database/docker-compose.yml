@@ -7,7 +7,7 @@ services:
     - "4477:4477"
     environment:
       PRISMA_CONFIG: |
-        secret: utBL2f_?6yQ3U@nzLt^6RyhcHw+=VZ
+        
         port: 4477
         databases:
           default:

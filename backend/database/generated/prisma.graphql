@@ -1,0 +1,1607 @@
+# source: http://localhost:4477/gdpr/data
+# timestamp: Sat Nov 24 2018 15:02:12 GMT+0100 (GMT+01:00)
+
+type AggregateContractor {
+  count: Int!
+}
+
+type AggregateDataShareConsent {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Contractor implements Node {
+  id: ID!
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+  user(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+}
+
+"""A connection to a list of items."""
+type ContractorConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ContractorEdge]!
+  aggregate: AggregateContractor!
+}
+
+input ContractorCreateInput {
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+  user: UserCreateManyWithoutContractorInput
+}
+
+input ContractorCreateManyWithoutUserInput {
+  create: [ContractorCreateWithoutUserInput!]
+  connect: [ContractorWhereUniqueInput!]
+}
+
+input ContractorCreateWithoutUserInput {
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+}
+
+"""An edge in a connection."""
+type ContractorEdge {
+  """The item at the end of the edge."""
+  node: Contractor!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ContractorOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  symbol_ASC
+  symbol_DESC
+  street_ASC
+  street_DESC
+  city_ASC
+  city_DESC
+  postal_ASC
+  postal_DESC
+  country_ASC
+  country_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ContractorPreviousValues {
+  id: ID!
+  name: String!
+  symbol: String!
+  street: String!
+  city: String!
+  postal: String!
+  country: String!
+}
+
+type ContractorSubscriptionPayload {
+  mutation: MutationType!
+  node: Contractor
+  updatedFields: [String!]
+  previousValues: ContractorPreviousValues
+}
+
+input ContractorSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ContractorSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ContractorSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ContractorSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ContractorWhereInput
+}
+
+input ContractorUpdateInput {
+  name: String
+  symbol: String
+  street: String
+  city: String
+  postal: String
+  country: String
+  user: UserUpdateManyWithoutContractorInput
+}
+
+input ContractorUpdateManyMutationInput {
+  name: String
+  symbol: String
+  street: String
+  city: String
+  postal: String
+  country: String
+}
+
+input ContractorUpdateManyWithoutUserInput {
+  create: [ContractorCreateWithoutUserInput!]
+  connect: [ContractorWhereUniqueInput!]
+  disconnect: [ContractorWhereUniqueInput!]
+  delete: [ContractorWhereUniqueInput!]
+  update: [ContractorUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [ContractorUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input ContractorUpdateWithoutUserDataInput {
+  name: String
+  symbol: String
+  street: String
+  city: String
+  postal: String
+  country: String
+}
+
+input ContractorUpdateWithWhereUniqueWithoutUserInput {
+  where: ContractorWhereUniqueInput!
+  data: ContractorUpdateWithoutUserDataInput!
+}
+
+input ContractorUpsertWithWhereUniqueWithoutUserInput {
+  where: ContractorWhereUniqueInput!
+  update: ContractorUpdateWithoutUserDataInput!
+  create: ContractorCreateWithoutUserInput!
+}
+
+input ContractorWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ContractorWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ContractorWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ContractorWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  symbol: String
+
+  """All values that are not equal to given value."""
+  symbol_not: String
+
+  """All values that are contained in given list."""
+  symbol_in: [String!]
+
+  """All values that are not contained in given list."""
+  symbol_not_in: [String!]
+
+  """All values less than the given value."""
+  symbol_lt: String
+
+  """All values less than or equal the given value."""
+  symbol_lte: String
+
+  """All values greater than the given value."""
+  symbol_gt: String
+
+  """All values greater than or equal the given value."""
+  symbol_gte: String
+
+  """All values containing the given string."""
+  symbol_contains: String
+
+  """All values not containing the given string."""
+  symbol_not_contains: String
+
+  """All values starting with the given string."""
+  symbol_starts_with: String
+
+  """All values not starting with the given string."""
+  symbol_not_starts_with: String
+
+  """All values ending with the given string."""
+  symbol_ends_with: String
+
+  """All values not ending with the given string."""
+  symbol_not_ends_with: String
+  street: String
+
+  """All values that are not equal to given value."""
+  street_not: String
+
+  """All values that are contained in given list."""
+  street_in: [String!]
+
+  """All values that are not contained in given list."""
+  street_not_in: [String!]
+
+  """All values less than the given value."""
+  street_lt: String
+
+  """All values less than or equal the given value."""
+  street_lte: String
+
+  """All values greater than the given value."""
+  street_gt: String
+
+  """All values greater than or equal the given value."""
+  street_gte: String
+
+  """All values containing the given string."""
+  street_contains: String
+
+  """All values not containing the given string."""
+  street_not_contains: String
+
+  """All values starting with the given string."""
+  street_starts_with: String
+
+  """All values not starting with the given string."""
+  street_not_starts_with: String
+
+  """All values ending with the given string."""
+  street_ends_with: String
+
+  """All values not ending with the given string."""
+  street_not_ends_with: String
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  postal: String
+
+  """All values that are not equal to given value."""
+  postal_not: String
+
+  """All values that are contained in given list."""
+  postal_in: [String!]
+
+  """All values that are not contained in given list."""
+  postal_not_in: [String!]
+
+  """All values less than the given value."""
+  postal_lt: String
+
+  """All values less than or equal the given value."""
+  postal_lte: String
+
+  """All values greater than the given value."""
+  postal_gt: String
+
+  """All values greater than or equal the given value."""
+  postal_gte: String
+
+  """All values containing the given string."""
+  postal_contains: String
+
+  """All values not containing the given string."""
+  postal_not_contains: String
+
+  """All values starting with the given string."""
+  postal_starts_with: String
+
+  """All values not starting with the given string."""
+  postal_not_starts_with: String
+
+  """All values ending with the given string."""
+  postal_ends_with: String
+
+  """All values not ending with the given string."""
+  postal_not_ends_with: String
+  country: String
+
+  """All values that are not equal to given value."""
+  country_not: String
+
+  """All values that are contained in given list."""
+  country_in: [String!]
+
+  """All values that are not contained in given list."""
+  country_not_in: [String!]
+
+  """All values less than the given value."""
+  country_lt: String
+
+  """All values less than or equal the given value."""
+  country_lte: String
+
+  """All values greater than the given value."""
+  country_gt: String
+
+  """All values greater than or equal the given value."""
+  country_gte: String
+
+  """All values containing the given string."""
+  country_contains: String
+
+  """All values not containing the given string."""
+  country_not_contains: String
+
+  """All values starting with the given string."""
+  country_starts_with: String
+
+  """All values not starting with the given string."""
+  country_not_starts_with: String
+
+  """All values ending with the given string."""
+  country_ends_with: String
+
+  """All values not ending with the given string."""
+  country_not_ends_with: String
+  user_every: UserWhereInput
+  user_some: UserWhereInput
+  user_none: UserWhereInput
+}
+
+input ContractorWhereUniqueInput {
+  id: ID
+}
+
+type DataShareConsent implements Node {
+  consentDate: DateTime!
+  consentGivenTo: String!
+  collectionName: String!
+  legalBasis: String!
+  rangeOfConsentedData: String!
+  consentGivenBy: String!
+  createdBy: User!
+  updatedBy: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+}
+
+"""A connection to a list of items."""
+type DataShareConsentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DataShareConsentEdge]!
+  aggregate: AggregateDataShareConsent!
+}
+
+input DataShareConsentCreateInput {
+  consentDate: DateTime!
+  consentGivenTo: String!
+  collectionName: String!
+  legalBasis: String!
+  rangeOfConsentedData: String!
+  consentGivenBy: String!
+  createdBy: UserCreateOneWithoutCreatedByInput!
+  updatedBy: UserCreateOneWithoutUpdatedByInput!
+}
+
+input DataShareConsentCreateManyWithoutCreatedByInput {
+  create: [DataShareConsentCreateWithoutCreatedByInput!]
+  connect: [DataShareConsentWhereUniqueInput!]
+}
+
+input DataShareConsentCreateManyWithoutUpdatedByInput {
+  create: [DataShareConsentCreateWithoutUpdatedByInput!]
+  connect: [DataShareConsentWhereUniqueInput!]
+}
+
+input DataShareConsentCreateWithoutCreatedByInput {
+  consentDate: DateTime!
+  consentGivenTo: String!
+  collectionName: String!
+  legalBasis: String!
+  rangeOfConsentedData: String!
+  consentGivenBy: String!
+  updatedBy: UserCreateOneWithoutUpdatedByInput!
+}
+
+input DataShareConsentCreateWithoutUpdatedByInput {
+  consentDate: DateTime!
+  consentGivenTo: String!
+  collectionName: String!
+  legalBasis: String!
+  rangeOfConsentedData: String!
+  consentGivenBy: String!
+  createdBy: UserCreateOneWithoutCreatedByInput!
+}
+
+"""An edge in a connection."""
+type DataShareConsentEdge {
+  """The item at the end of the edge."""
+  node: DataShareConsent!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DataShareConsentOrderByInput {
+  consentDate_ASC
+  consentDate_DESC
+  consentGivenTo_ASC
+  consentGivenTo_DESC
+  collectionName_ASC
+  collectionName_DESC
+  legalBasis_ASC
+  legalBasis_DESC
+  rangeOfConsentedData_ASC
+  rangeOfConsentedData_DESC
+  consentGivenBy_ASC
+  consentGivenBy_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+}
+
+type DataShareConsentPreviousValues {
+  consentDate: DateTime!
+  consentGivenTo: String!
+  collectionName: String!
+  legalBasis: String!
+  rangeOfConsentedData: String!
+  consentGivenBy: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+}
+
+type DataShareConsentSubscriptionPayload {
+  mutation: MutationType!
+  node: DataShareConsent
+  updatedFields: [String!]
+  previousValues: DataShareConsentPreviousValues
+}
+
+input DataShareConsentSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DataShareConsentSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DataShareConsentSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DataShareConsentSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DataShareConsentWhereInput
+}
+
+input DataShareConsentUpdateInput {
+  consentDate: DateTime
+  consentGivenTo: String
+  collectionName: String
+  legalBasis: String
+  rangeOfConsentedData: String
+  consentGivenBy: String
+  createdBy: UserUpdateOneRequiredWithoutCreatedByInput
+  updatedBy: UserUpdateOneRequiredWithoutUpdatedByInput
+}
+
+input DataShareConsentUpdateManyMutationInput {
+  consentDate: DateTime
+  consentGivenTo: String
+  collectionName: String
+  legalBasis: String
+  rangeOfConsentedData: String
+  consentGivenBy: String
+}
+
+input DataShareConsentUpdateManyWithoutCreatedByInput {
+  create: [DataShareConsentCreateWithoutCreatedByInput!]
+  connect: [DataShareConsentWhereUniqueInput!]
+  disconnect: [DataShareConsentWhereUniqueInput!]
+  delete: [DataShareConsentWhereUniqueInput!]
+  update: [DataShareConsentUpdateWithWhereUniqueWithoutCreatedByInput!]
+  upsert: [DataShareConsentUpsertWithWhereUniqueWithoutCreatedByInput!]
+}
+
+input DataShareConsentUpdateManyWithoutUpdatedByInput {
+  create: [DataShareConsentCreateWithoutUpdatedByInput!]
+  connect: [DataShareConsentWhereUniqueInput!]
+  disconnect: [DataShareConsentWhereUniqueInput!]
+  delete: [DataShareConsentWhereUniqueInput!]
+  update: [DataShareConsentUpdateWithWhereUniqueWithoutUpdatedByInput!]
+  upsert: [DataShareConsentUpsertWithWhereUniqueWithoutUpdatedByInput!]
+}
+
+input DataShareConsentUpdateWithoutCreatedByDataInput {
+  consentDate: DateTime
+  consentGivenTo: String
+  collectionName: String
+  legalBasis: String
+  rangeOfConsentedData: String
+  consentGivenBy: String
+  updatedBy: UserUpdateOneRequiredWithoutUpdatedByInput
+}
+
+input DataShareConsentUpdateWithoutUpdatedByDataInput {
+  consentDate: DateTime
+  consentGivenTo: String
+  collectionName: String
+  legalBasis: String
+  rangeOfConsentedData: String
+  consentGivenBy: String
+  createdBy: UserUpdateOneRequiredWithoutCreatedByInput
+}
+
+input DataShareConsentUpdateWithWhereUniqueWithoutCreatedByInput {
+  where: DataShareConsentWhereUniqueInput!
+  data: DataShareConsentUpdateWithoutCreatedByDataInput!
+}
+
+input DataShareConsentUpdateWithWhereUniqueWithoutUpdatedByInput {
+  where: DataShareConsentWhereUniqueInput!
+  data: DataShareConsentUpdateWithoutUpdatedByDataInput!
+}
+
+input DataShareConsentUpsertWithWhereUniqueWithoutCreatedByInput {
+  where: DataShareConsentWhereUniqueInput!
+  update: DataShareConsentUpdateWithoutCreatedByDataInput!
+  create: DataShareConsentCreateWithoutCreatedByInput!
+}
+
+input DataShareConsentUpsertWithWhereUniqueWithoutUpdatedByInput {
+  where: DataShareConsentWhereUniqueInput!
+  update: DataShareConsentUpdateWithoutUpdatedByDataInput!
+  create: DataShareConsentCreateWithoutUpdatedByInput!
+}
+
+input DataShareConsentWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DataShareConsentWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DataShareConsentWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DataShareConsentWhereInput!]
+  consentDate: DateTime
+
+  """All values that are not equal to given value."""
+  consentDate_not: DateTime
+
+  """All values that are contained in given list."""
+  consentDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  consentDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  consentDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  consentDate_lte: DateTime
+
+  """All values greater than the given value."""
+  consentDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  consentDate_gte: DateTime
+  consentGivenTo: String
+
+  """All values that are not equal to given value."""
+  consentGivenTo_not: String
+
+  """All values that are contained in given list."""
+  consentGivenTo_in: [String!]
+
+  """All values that are not contained in given list."""
+  consentGivenTo_not_in: [String!]
+
+  """All values less than the given value."""
+  consentGivenTo_lt: String
+
+  """All values less than or equal the given value."""
+  consentGivenTo_lte: String
+
+  """All values greater than the given value."""
+  consentGivenTo_gt: String
+
+  """All values greater than or equal the given value."""
+  consentGivenTo_gte: String
+
+  """All values containing the given string."""
+  consentGivenTo_contains: String
+
+  """All values not containing the given string."""
+  consentGivenTo_not_contains: String
+
+  """All values starting with the given string."""
+  consentGivenTo_starts_with: String
+
+  """All values not starting with the given string."""
+  consentGivenTo_not_starts_with: String
+
+  """All values ending with the given string."""
+  consentGivenTo_ends_with: String
+
+  """All values not ending with the given string."""
+  consentGivenTo_not_ends_with: String
+  collectionName: String
+
+  """All values that are not equal to given value."""
+  collectionName_not: String
+
+  """All values that are contained in given list."""
+  collectionName_in: [String!]
+
+  """All values that are not contained in given list."""
+  collectionName_not_in: [String!]
+
+  """All values less than the given value."""
+  collectionName_lt: String
+
+  """All values less than or equal the given value."""
+  collectionName_lte: String
+
+  """All values greater than the given value."""
+  collectionName_gt: String
+
+  """All values greater than or equal the given value."""
+  collectionName_gte: String
+
+  """All values containing the given string."""
+  collectionName_contains: String
+
+  """All values not containing the given string."""
+  collectionName_not_contains: String
+
+  """All values starting with the given string."""
+  collectionName_starts_with: String
+
+  """All values not starting with the given string."""
+  collectionName_not_starts_with: String
+
+  """All values ending with the given string."""
+  collectionName_ends_with: String
+
+  """All values not ending with the given string."""
+  collectionName_not_ends_with: String
+  legalBasis: String
+
+  """All values that are not equal to given value."""
+  legalBasis_not: String
+
+  """All values that are contained in given list."""
+  legalBasis_in: [String!]
+
+  """All values that are not contained in given list."""
+  legalBasis_not_in: [String!]
+
+  """All values less than the given value."""
+  legalBasis_lt: String
+
+  """All values less than or equal the given value."""
+  legalBasis_lte: String
+
+  """All values greater than the given value."""
+  legalBasis_gt: String
+
+  """All values greater than or equal the given value."""
+  legalBasis_gte: String
+
+  """All values containing the given string."""
+  legalBasis_contains: String
+
+  """All values not containing the given string."""
+  legalBasis_not_contains: String
+
+  """All values starting with the given string."""
+  legalBasis_starts_with: String
+
+  """All values not starting with the given string."""
+  legalBasis_not_starts_with: String
+
+  """All values ending with the given string."""
+  legalBasis_ends_with: String
+
+  """All values not ending with the given string."""
+  legalBasis_not_ends_with: String
+  rangeOfConsentedData: String
+
+  """All values that are not equal to given value."""
+  rangeOfConsentedData_not: String
+
+  """All values that are contained in given list."""
+  rangeOfConsentedData_in: [String!]
+
+  """All values that are not contained in given list."""
+  rangeOfConsentedData_not_in: [String!]
+
+  """All values less than the given value."""
+  rangeOfConsentedData_lt: String
+
+  """All values less than or equal the given value."""
+  rangeOfConsentedData_lte: String
+
+  """All values greater than the given value."""
+  rangeOfConsentedData_gt: String
+
+  """All values greater than or equal the given value."""
+  rangeOfConsentedData_gte: String
+
+  """All values containing the given string."""
+  rangeOfConsentedData_contains: String
+
+  """All values not containing the given string."""
+  rangeOfConsentedData_not_contains: String
+
+  """All values starting with the given string."""
+  rangeOfConsentedData_starts_with: String
+
+  """All values not starting with the given string."""
+  rangeOfConsentedData_not_starts_with: String
+
+  """All values ending with the given string."""
+  rangeOfConsentedData_ends_with: String
+
+  """All values not ending with the given string."""
+  rangeOfConsentedData_not_ends_with: String
+  consentGivenBy: String
+
+  """All values that are not equal to given value."""
+  consentGivenBy_not: String
+
+  """All values that are contained in given list."""
+  consentGivenBy_in: [String!]
+
+  """All values that are not contained in given list."""
+  consentGivenBy_not_in: [String!]
+
+  """All values less than the given value."""
+  consentGivenBy_lt: String
+
+  """All values less than or equal the given value."""
+  consentGivenBy_lte: String
+
+  """All values greater than the given value."""
+  consentGivenBy_gt: String
+
+  """All values greater than or equal the given value."""
+  consentGivenBy_gte: String
+
+  """All values containing the given string."""
+  consentGivenBy_contains: String
+
+  """All values not containing the given string."""
+  consentGivenBy_not_contains: String
+
+  """All values starting with the given string."""
+  consentGivenBy_starts_with: String
+
+  """All values not starting with the given string."""
+  consentGivenBy_not_starts_with: String
+
+  """All values ending with the given string."""
+  consentGivenBy_ends_with: String
+
+  """All values not ending with the given string."""
+  consentGivenBy_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdBy: UserWhereInput
+  updatedBy: UserWhereInput
+}
+
+input DataShareConsentWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createContractor(data: ContractorCreateInput!): Contractor!
+  createDataShareConsent(data: DataShareConsentCreateInput!): DataShareConsent!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateContractor(data: ContractorUpdateInput!, where: ContractorWhereUniqueInput!): Contractor
+  updateDataShareConsent(data: DataShareConsentUpdateInput!, where: DataShareConsentWhereUniqueInput!): DataShareConsent
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteContractor(where: ContractorWhereUniqueInput!): Contractor
+  deleteDataShareConsent(where: DataShareConsentWhereUniqueInput!): DataShareConsent
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertContractor(where: ContractorWhereUniqueInput!, create: ContractorCreateInput!, update: ContractorUpdateInput!): Contractor!
+  upsertDataShareConsent(where: DataShareConsentWhereUniqueInput!, create: DataShareConsentCreateInput!, update: DataShareConsentUpdateInput!): DataShareConsent!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyContractors(data: ContractorUpdateManyMutationInput!, where: ContractorWhereInput): BatchPayload!
+  updateManyDataShareConsents(data: DataShareConsentUpdateManyMutationInput!, where: DataShareConsentWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyContractors(where: ContractorWhereInput): BatchPayload!
+  deleteManyDataShareConsents(where: DataShareConsentWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  contractors(where: ContractorWhereInput, orderBy: ContractorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contractor]!
+  dataShareConsents(where: DataShareConsentWhereInput, orderBy: DataShareConsentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DataShareConsent]!
+  user(where: UserWhereUniqueInput!): User
+  contractor(where: ContractorWhereUniqueInput!): Contractor
+  dataShareConsent(where: DataShareConsentWhereUniqueInput!): DataShareConsent
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  contractorsConnection(where: ContractorWhereInput, orderBy: ContractorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContractorConnection!
+  dataShareConsentsConnection(where: DataShareConsentWhereInput, orderBy: DataShareConsentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DataShareConsentConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  contractor(where: ContractorSubscriptionWhereInput): ContractorSubscriptionPayload
+  dataShareConsent(where: DataShareConsentSubscriptionWhereInput): DataShareConsentSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType!
+  contractor(where: ContractorWhereInput, orderBy: ContractorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contractor!]
+  createdBy(where: DataShareConsentWhereInput, orderBy: DataShareConsentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DataShareConsent!]
+  updatedBy(where: DataShareConsentWhereInput, orderBy: DataShareConsentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DataShareConsent!]
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType
+  contractor: ContractorCreateManyWithoutUserInput
+  createdBy: DataShareConsentCreateManyWithoutCreatedByInput
+  updatedBy: DataShareConsentCreateManyWithoutUpdatedByInput
+}
+
+input UserCreateManyWithoutContractorInput {
+  create: [UserCreateWithoutContractorInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneWithoutCreatedByInput {
+  create: UserCreateWithoutCreatedByInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutUpdatedByInput {
+  create: UserCreateWithoutUpdatedByInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutContractorInput {
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType
+  createdBy: DataShareConsentCreateManyWithoutCreatedByInput
+  updatedBy: DataShareConsentCreateManyWithoutUpdatedByInput
+}
+
+input UserCreateWithoutCreatedByInput {
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType
+  contractor: ContractorCreateManyWithoutUserInput
+  updatedBy: DataShareConsentCreateManyWithoutUpdatedByInput
+}
+
+input UserCreateWithoutUpdatedByInput {
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType
+  contractor: ContractorCreateManyWithoutUserInput
+  createdBy: DataShareConsentCreateManyWithoutCreatedByInput
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  name_ASC
+  name_DESC
+  avatar_ASC
+  avatar_DESC
+  role_ASC
+  role_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+enum UserType {
+  ADMIN
+  USER
+  TEMPUSER
+  NEW
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  name: String
+  avatar: String
+  role: UserType
+  contractor: ContractorUpdateManyWithoutUserInput
+  createdBy: DataShareConsentUpdateManyWithoutCreatedByInput
+  updatedBy: DataShareConsentUpdateManyWithoutUpdatedByInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+  name: String
+  avatar: String
+  role: UserType
+}
+
+input UserUpdateManyWithoutContractorInput {
+  create: [UserCreateWithoutContractorInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutContractorInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutContractorInput!]
+}
+
+input UserUpdateOneRequiredWithoutCreatedByInput {
+  create: UserCreateWithoutCreatedByInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutCreatedByDataInput
+  upsert: UserUpsertWithoutCreatedByInput
+}
+
+input UserUpdateOneRequiredWithoutUpdatedByInput {
+  create: UserCreateWithoutUpdatedByInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutUpdatedByDataInput
+  upsert: UserUpsertWithoutUpdatedByInput
+}
+
+input UserUpdateWithoutContractorDataInput {
+  email: String
+  password: String
+  name: String
+  avatar: String
+  role: UserType
+  createdBy: DataShareConsentUpdateManyWithoutCreatedByInput
+  updatedBy: DataShareConsentUpdateManyWithoutUpdatedByInput
+}
+
+input UserUpdateWithoutCreatedByDataInput {
+  email: String
+  password: String
+  name: String
+  avatar: String
+  role: UserType
+  contractor: ContractorUpdateManyWithoutUserInput
+  updatedBy: DataShareConsentUpdateManyWithoutUpdatedByInput
+}
+
+input UserUpdateWithoutUpdatedByDataInput {
+  email: String
+  password: String
+  name: String
+  avatar: String
+  role: UserType
+  contractor: ContractorUpdateManyWithoutUserInput
+  createdBy: DataShareConsentUpdateManyWithoutCreatedByInput
+}
+
+input UserUpdateWithWhereUniqueWithoutContractorInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutContractorDataInput!
+}
+
+input UserUpsertWithoutCreatedByInput {
+  update: UserUpdateWithoutCreatedByDataInput!
+  create: UserCreateWithoutCreatedByInput!
+}
+
+input UserUpsertWithoutUpdatedByInput {
+  update: UserUpdateWithoutUpdatedByDataInput!
+  create: UserCreateWithoutUpdatedByInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutContractorInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutContractorDataInput!
+  create: UserCreateWithoutContractorInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  avatar: String
+
+  """All values that are not equal to given value."""
+  avatar_not: String
+
+  """All values that are contained in given list."""
+  avatar_in: [String!]
+
+  """All values that are not contained in given list."""
+  avatar_not_in: [String!]
+
+  """All values less than the given value."""
+  avatar_lt: String
+
+  """All values less than or equal the given value."""
+  avatar_lte: String
+
+  """All values greater than the given value."""
+  avatar_gt: String
+
+  """All values greater than or equal the given value."""
+  avatar_gte: String
+
+  """All values containing the given string."""
+  avatar_contains: String
+
+  """All values not containing the given string."""
+  avatar_not_contains: String
+
+  """All values starting with the given string."""
+  avatar_starts_with: String
+
+  """All values not starting with the given string."""
+  avatar_not_starts_with: String
+
+  """All values ending with the given string."""
+  avatar_ends_with: String
+
+  """All values not ending with the given string."""
+  avatar_not_ends_with: String
+  role: UserType
+
+  """All values that are not equal to given value."""
+  role_not: UserType
+
+  """All values that are contained in given list."""
+  role_in: [UserType!]
+
+  """All values that are not contained in given list."""
+  role_not_in: [UserType!]
+  contractor_every: ContractorWhereInput
+  contractor_some: ContractorWhereInput
+  contractor_none: ContractorWhereInput
+  createdBy_every: DataShareConsentWhereInput
+  createdBy_some: DataShareConsentWhereInput
+  createdBy_none: DataShareConsentWhereInput
+  updatedBy_every: DataShareConsentWhereInput
+  updatedBy_some: DataShareConsentWhereInput
+  updatedBy_none: DataShareConsentWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
