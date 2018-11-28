@@ -1,0 +1,247 @@
+mutation {
+  datashareconsent1: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Paweł Jankowski"
+    }
+  ) {
+    id
+  }
+  datashareconsent2: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "SuperFarm"
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Weronika Marszałek"
+    }
+  ) {
+    id
+  }
+  datashareconsent3: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Mateusz Wilczyński"
+    }
+  ) {
+    id
+  }
+  datashareconsent4: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Franciszek Krajewski"
+    }
+  ) {
+    id
+  }
+  datashareconsent5: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Dariusz Szczepański"
+    }
+  ) {
+    id
+  }
+  datashareconsent6: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Magdalena Michalak"
+    }
+  ) {
+    id
+  }
+  datashareconsent7: createDataShareConsent(
+    data: {
+      consentDate: "2018-11-26T20:53:07+00:00"
+      consentGivenTo: "Super Firma Sp z o.o."
+      collectionName: "Dane osobowe"
+      legalBasis: "RODO"
+      rangeOfConsentedData: "Imię, nazwisko, adres zamieszkania, nr telefonu, PESEL, data urodzenia"
+      createdBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      updatedBy: { connect: { id: "cjoytb6tq000l0780te44ju04" } }
+      consentGivenBy: "Bartek Czarnecki"
+    }
+  ) {
+    id
+  }
+  a: createUser(
+    data: {
+      name: "Janusz Pospólny"
+      email: "januszposp245@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Podłogi i mopy S.C."
+          symbol: "PiM"
+          street: "Warciańska 12"
+          city: "Lichogóry"
+          postal: "66-457"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  b: createUser(
+    data: {
+      name: "Andrzej Niewiadomski"
+      email: "andrzejniewiem@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Freelance&Freelance S.A."
+          symbol: "FF"
+          street: "Naramowicka 51"
+          city: "Poznań"
+          postal: "61-154"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  ac: createUser(
+    data: {
+      name: "Mateusz Bożydar"
+      email: "matiborzo@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Super Firma Sp z o.o."
+          symbol: "SP"
+          street: "Wyoskie górki 51/1a"
+          city: "Wrocław"
+          postal: "50-004"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  ad: createUser(
+    data: {
+      name: "Michał Cierpki"
+      email: "michalcierpki@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Wymiatacze.pl Sp.J."
+          symbol: "SP"
+          street: "Startupu 95"
+          city: "Warszawa"
+          postal: "00-007"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  ae: createUser(
+    data: {
+      name: "Jan Smityński"
+      email: "jan.smit@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Pudełka Sp. z o.o."
+          symbol: "PUD"
+          street: "Obi-Wana Kenobiego"
+          city: "Toruń"
+          postal: "87-162"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  fa: createUser(
+    data: {
+      name: "Anna Wymarła"
+      email: "anna.wymarla@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Znicze i nagrobki Sp.J."
+          symbol: "SP"
+          street: "Żwirki 5"
+          city: "Łódź"
+          postal: "90-539"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+  ga: createUser(
+    data: {
+      name: "Albert Sobierajski"
+      email: "albertsobiepisze@example.pl"
+      password: ""
+      avatar: ""
+      role: USER
+      contractor: {
+        create: {
+          name: "Albert i Spółka"
+          symbol: "ASP"
+          street: "Krasińskiego 42"
+          city: "Warszawa"
+          postal: "01-615"
+          country: "PL"
+        }
+      }
+    }
+  ) {
+    id
+  }
+}

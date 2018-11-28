@@ -1,158 +1,137 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import gql from "graphql-tag";
+import { Query, compose, graphql } from "react-apollo";
 import format from "date-fns/format";
 
-const styles = theme => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
-  },
-  table: {
-    minWidth: 700
+export const DATA_SHARE_CONSENTS = gql`
+  query dataShareConsents {
+    dataShareConsents {
+      id
+      consentDate
+      consentGivenTo
+      collectionName
+      legalBasis
+      rangeOfConsentedData
+      consentGivenBy
+    }
   }
-});
+`;
 
-let id = 0;
-function createData(
-  consentDate,
-  consentGivenTo,
-  collectionName,
-  legalBasis,
-  rangeOfConsenetedData,
-  consentGivenBy,
-  createdBy,
-  updatedBy,
-  createdAt,
-  updatedAt
-) {
-  id += 1;
-  return {
-    id, //1
-    consentDate, //2
-    consentGivenTo, //3
-    collectionName, //4
-    legalBasis, //5
-    rangeOfConsenetedData, //6
-    consentGivenBy, //7
-    createdBy, //8
-    createdAt, //9
-    updatedBy, //10
-    updatedAt //11
+
+class EditableTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+      error: ""
+    };
+  }
+  //props Column names
+  // consentDate,
+  // consentGivenTo,
+  // collectionName,
+  // legalBasis,
+  // rangeOfConsenetedData,
+  // consentGivenBy,
+  // createdBy,
+  // updatedBy,
+  // createdAt,
+  // updatedAt
+
+  componentDidMount(){
+    console.log(`Pre-execute phase is beginning...`);
+    this.queryData;
+    console.log(`Post-execute phase is beginning...`);
   };
+
+  queryData = async () => {
+    await this.props.dataShareConsents()
+      .then(response => {
+        console.log(`Response: ${response.data.dataShareConsents}`);
+        this.setState({
+          data: response.data.dataShareConsents
+        });
+      })
+      .catch(e => {
+        console.error(e);
+        this.setState({
+          error: e
+        });
+      });
+  };
+
+  render() {
+    return (
+      <Paper
+     /* className={classes.root}*/
+     >
+      </Paper>
+
+    );
+  }
 }
-const consentDateVar = new Date();
-//2018-11-20T11:00:00+00:00
-//2018-10-20T10:54:00+00:00
-//2018-09-20T11:00:00+00:00
-//2018-08-20T11:07:00+00:00
-//2018-10-20T09:03:00+00:00
-//2018-11-20T11:44:00+00:00
-//2018-09-20T08:32:00+00:00
-const rows = [
-  createData(
-    `${format(consentDateVar, "DD.MM.YYYY")}`, //2
-    `ACME GmbH`, //3
-    `Dane osobowe`, //4
-    `RODO`, //5
-    `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, //6
-    `Mariusz Niepomorski`, //7
-    `Anna Master`, //8
-    `${format(consentDateVar, "DD.MM.YYYY")}`, //9
-    `Jan Kowalski`, //10
-    `${format(consentDateVar + 3, "DD.MM.YYYY")}` //11
-  ),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-    createData(`${format(consentDateVar, "DD.MM.YYYY")}`, `ACME GmbH`, `Dane osobowe`, `RODO`, `Imię, nazwisko, data urodzenia, PESEL, Nr D.O., miejsce zamieszkania`, `Mariusz Niepomorski`, `Anna Master`, `${format(consentDateVar, "DD.MM.YYYY")}`, `Jan Kowalski`, `${format(consentDateVar + 3, "DD.MM.YYYY")}`),
-];
+const styles = theme => ({
+  root: { width: "100%", marginTop: theme.spacing.unit * 3, overflowX: "auto" },
+  table: { minWidth: 700 }
+});
 
 function SimpleTable(props) {
   const { classes } = props;
-
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow
-            onClick={e => {
-              console.log(`I've been clicked`);
-            }}
-          >
-            <TableCell>Data udostępnienia danych</TableCell>
-            <TableCell>Podmiot, któremu udostępniono dane</TableCell>
-            <TableCell>Nazwa zbioru, z którego udostępniono dane</TableCell>
-            <TableCell>Podstawa prawna udostępnienia danych</TableCell>
-            <TableCell>Zakres udostępnienia danych</TableCell>
-            <TableCell>
-              Nazwisko i imię pracownika dokonującego udostępnienia danych
-            </TableCell>
-            <TableCell>Utworzone dnia</TableCell>
-            <TableCell>Utworzone przez</TableCell>
-            <TableCell>Aktualizowane dnia</TableCell>
-            <TableCell>Aktualizowane przez</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.consentDate}
-                </TableCell>
-                <TableCell>{row.consentGivenTo}</TableCell>
-                <TableCell>{row.collectionName}</TableCell>
-                <TableCell>{row.legalBasis}</TableCell>
-                <TableCell>{row.rangeOfConsenetedData}</TableCell>
-                <TableCell>{row.consentGivenBy}</TableCell>
-                <TableCell>{row.createdBy}</TableCell>
-                <TableCell>{row.updatedBy}</TableCell>
-                <TableCell>{row.createdAt}</TableCell>
-                <TableCell>{row.updatedAt}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+  SimpleTable.propTypes = { classes: PropTypes.object.isRequired };
 }
 
-SimpleTable.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// const WrappedEditableTable = withStyles(styles)(SimpleTable);
+// const MyTable=graphql(DATA_SHARE_CONSENTS)(EditableTable);
+//   export default MyTable;
+const withQuery = graphql(DATA_SHARE_CONSENTS,{name:'dataShareConsents'});
+const EditableTableWithData = withQuery(EditableTable);
+export default EditableTableWithData;
 
-const EditableTable = withStyles(styles)(SimpleTable);
+{/*
+<Table
+// className={classes.table}
+>
+  <TableHead>
+    <TableRow onClick={e => { console.log(`I've been clicked`); }}>
+      <TableCell>Data udostępnienia danych</TableCell>
+      <TableCell>Podmiot, któremu udostępniono dane</TableCell>
+      <TableCell>Nazwa zbioru, z którego udostępniono dane</TableCell>
+      <TableCell>Podstawa prawna udostępnienia danych</TableCell>
+      <TableCell>Zakres udostępnienia danych</TableCell>
+      <TableCell>Nazwisko i imię pracownika dokonującego udostępnienia danych</TableCell>  <TableCell>Utworzone dnia</TableCell>
+      <TableCell>Utworzone dnia</TableCell>
+      <TableCell>Utworzone przez</TableCell>
+      <TableCell>Aktualizowane dnia</TableCell>
+      <TableCell>Aktualizowane przez</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
 
-export default EditableTable;
+    {data.map(data => {
+      return <TableRow key={data.id}>
+        <TableCell component="th" scope="row">
+          {data.consentDate}
+        </TableCell>
+        <TableCell>{data.consentGivenTo}</TableCell>
+        <TableCell>{data.collectionName}</TableCell>
+        <TableCell>{data.legalBasis}</TableCell>
+        <TableCell>{data.rangeOfConsenetedData}</TableCell>
+        <TableCell>{data.consentGivenBy}</TableCell>
+        {/* <TableCell>{data.createdBy}</TableCell>
+                  <TableCell>{data.updatedBy}</TableCell>
+        <TableCell>{data.createdAt}</TableCell>
+        <TableCell>{data.updatedAt}</TableCell>
+      </TableRow>;
+    })}
+  </TableBody>
+</Table>
+  */}
